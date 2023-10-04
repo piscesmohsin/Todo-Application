@@ -10,8 +10,8 @@
 
         const li = document.createElement("li");
         li.innerHTML = `
-            <span>${taskText}</span>
-            <span class="delete">X</span>
+            <span class="task">${taskText}</span>
+            <span class="delete">Done</span>
         `;
 
         // Add an event listener to delete the task when "X" is clicked
@@ -60,7 +60,7 @@ let namey = month[d2.getMonth()];
 const d3 = new Date();
 let date = d3.getDate();
 
-const h1i=document.querySelector("h1");
+const h1i=document.querySelector("h3");
 
     h1i.innerHTML=`
     <span>${day}</span>,
