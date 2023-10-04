@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo-List</title>
+    
+</head>
+<body>
+
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.container {
+
+    background-color: white;
+    
+    width: 400px;
+    max-width: 400px;
+    height: 300px;
+    position: absolute;
+    margin-top: 140px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+.date {
+    max-width: 370px;
+    background-color: rgb(255, 255, 255);
+    color: #fff;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+h3 {
+    margin-top: -10px;
+    color: #000000;
+    text-align: center;
+    padding: 10px;
+
+}
+
+
+li{
+    margin-left: 30px;
+}
+
+input[type="text"] {
+    border-radius: 10px;
+    position: relative;
+    border: 1px solid black;
+    margin: 10px;
+    
+    width: 80%;
+    padding: 20px;
+}
+
+button {
+    position: absolute;
+    margin-left: -115px;
+    margin-top: 15px;
+    border-radius: 10px;
+    width: 100px;
+    height: 45px;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.delete {
+    display: block;
+    color: rgb(255, 255, 255);
+    height: 10px;
+    width: 60px;
+    border-radius: 30px;
+    padding: 5px;
+    cursor: pointer;
+    margin-right: 30px;
+    background-color: rgb(0, 0, 0);
+    
+    
+}
+
+.task{
+    font-size: large;
+    margin-left: 40px;
+}
+
+#tasklist {
+    color: black;
+}
+
+    </style>
+
+    <h2 style="text-align: center;" >To-Do App</h2>
+    <div class="date">
+        
+        <h3></h3>
+       </div>
+    <div class="container">
+       
+        
+<input type="text" id="taskinput" placeholder="Add New Task">
+<button id="addtask" >Add Task</button>
+<ul id="tasklist">
+
+</ul>
+
+
+
+</div>
+
+<script>
+// document.addEventListener("DOMContentLoaded", function() {
+    const taskInput = document.getElementById("taskinput");
+    const addTaskButton = document.getElementById("addtask");
+    const taskList = document.getElementById("tasklist");
+
+    // Function to add a new task
+    function addTask() {
+        const taskText = taskInput.value.trim();
+        if (taskText === "") return; // Prevent adding empty tasks
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <span class="task">${taskText}</span>
+            <span class="delete">Done</span>
+        `;
+
+        // Add an event listener to delete the task when "X" is clicked
+        // const deleteButton = li.querySelector(".delete");
+        // deleteButton.addEventListener("click", function() {
+        //     taskList.removeChild(li);
+        // });
+
+        const deleteButton = li.querySelector(".delete");
+        deleteButton.addEventListener("click", function() {
+            const taskSpan = li.querySelector("span");
+            taskSpan.innerHTML = `<s>${taskSpan.textContent}</s>`;
+            deleteButton .style.display = "none"; 
+    
+        });
+
+
+
+
+
+
+        taskList.appendChild(li);
+        taskInput.value = "";
+    }
+
+    // Add a task when the "Add" button is clicked
+    addTaskButton.addEventListener("click", addTask);
+
+    // Add a task when Enter key is pressed in the input field
+    taskInput.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+    const d1 = new Date();
+    let day = weekday[d1.getDay()];
+
+    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+const d2 = new Date();
+let namey = month[d2.getMonth()];
+
+const d3 = new Date();
+let date = d3.getDate();
+
+const h1i=document.querySelector("h3");
+
+    h1i.innerHTML=`
+    <span>${day}</span>,
+    <span>${date}</span>
+    <span>${namey}</span>
+    `;
+    
+
+
+
+</script>
+</body>
+</html>
